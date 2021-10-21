@@ -1,0 +1,10 @@
+{
+  "baseUrl": "./",
+
+  "paths": {
+    "*": ["./src/*"],
+    "@components": ["./src/components"]
+  },
+
+  "exclude": ["node_modules"]
+}

@@ -4,10 +4,12 @@ module.exports = {
     [
       'module-resolver',
       {
-        root: ['.'],
-        extensions: ['.ts', '.tsx', '.jsx', '.js', '.json', '.svg', '.jpg'],
         alias: {
-          '@components': './src/components',
+          '@src': './src',
+          '@screens': './src/screens',
+          '@shared': './src/shared',
+          '@redux': './src/redux',
+          '@nav': './src/nav',
         },
       },
     ],

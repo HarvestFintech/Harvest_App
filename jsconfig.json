@@ -44,7 +44,8 @@
       "@screens/*": ["src/screens/index", "src/screens/*"],
       "@nav/*": ["src/nav/index", "src/nav/*"],
       "@shared/*": ["src/shared/index", "src/shared/*"],
-      "@redux/*": ["src/redux/index", "src/redux/*"]
+      "@redux/*": ["src/redux/index", "src/redux/*"],
+      "@util/*": ["src/util/index", "src/util/*"]
     } /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */,
     // "baseUrl": "./",                       /* Base directory to resolve non-absolute module names. */
     // "paths": {},                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */

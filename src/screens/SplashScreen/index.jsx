@@ -1,20 +1,14 @@
-import React, {useEffect} from 'react';
-
-import {SafeAreaView} from 'react-native-safe-area-context';
-import tw from 'tailwind-react-native-classnames';
+import React from 'react';
 
 import {Logo} from '@shared';
 
-import {useSelector} from 'react-redux';
+import {ScreenContainer} from '@shared';
 
-const Splash = ({navigation}) => {
-  const userStatus = useSelector(({userInfo}) => userInfo.isLoggedIn);
-  console.log(`logged in: ${userStatus}`);
-
+const Splash = () => {
   return (
-    <SafeAreaView style={tw`bg-purple-900 flex-1 items-center justify-center`}>
+    <ScreenContainer>
       <Logo size="32" />
-    </SafeAreaView>
+    </ScreenContainer>
   );
 };
 

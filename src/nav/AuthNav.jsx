@@ -12,9 +12,9 @@ import {
   SuggestedBaskets,
 } from '@screens/Auth';
 
-const AuthStack = () => {
-  const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator();
 
+const AuthStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{headerShown: false}}

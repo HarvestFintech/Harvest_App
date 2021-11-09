@@ -31,9 +31,9 @@ const tabIcons = (route, color) => {
   return <Icon name={iconName} color={color} type="ionicon" />;
 };
 
-const HomeNav = () => {
-  const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator();
 
+const HomeNav = () => {
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({

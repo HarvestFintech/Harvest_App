@@ -1,33 +1,30 @@
 import React from 'react';
 
 import {View, Text, TextInput} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
 
-import {Logo, ButtonSimple} from '@shared';
+import {Input, Button} from 'react-native-elements';
 
-import tw from 'tailwind-react-native-classnames';
+import {Logo, ScreenContainer} from '@shared';
 
 const Register = ({navigation}) => {
   return (
-    <SafeAreaView style={tw`bg-purple-900 flex-1 items-center justify-center`}>
-      <Text style={tw`font-bold text-lg text-white`}>
-        HARVEST REGISTER PAGE
-      </Text>
+    <ScreenContainer>
+      <Text>REGISTER</Text>
+      <Text>LET'S START</Text>
 
       <View className="registerForm">
-        <TextInput placeholder="user" />
-        <TextInput placeholder="pass" />
+        <Input title="First name" placeholder="John" />
+        <Input title="Last name" placeholder="Appleseed" />
+        <Input title="Email address" placeholder="email@address.com" />
       </View>
-      <ButtonSimple
-        label="Next Step"
-        onPress={() => navigation.navigate('Register2')}
-      />
-      <ButtonSimple
-        label="to Login"
+      <Button title="Next Step" onPress={() => navigation.push('Register2')} />
+      <Button
+        title="to Login"
+        type="clear"
         onPress={() => navigation.replace('Login')}
       />
       <Logo />
-    </SafeAreaView>
+    </ScreenContainer>
   );
 };
 

@@ -1,21 +1,19 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Button} from 'react-native';
 
-import {SafeAreaView} from 'react-native-safe-area-context';
-
-import {ButtonSimple} from '@shared';
+import {ScreenContainer} from '@shared';
 
 const RiskAssessment = ({navigation}) => {
   return (
-    <SafeAreaView>
+    <ScreenContainer>
       <View>
         <Text>Risk Assessment</Text>
       </View>
-      <ButtonSimple
-        label="Next Step"
+      <Button
+        title="Next Step"
         onPress={() => navigation.navigate('SuggestedBaskets')}
       />
-    </SafeAreaView>
+    </ScreenContainer>
   );
 };
 

@@ -1,12 +1,10 @@
 import React, {useEffect} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Button} from 'react-native';
 
 import {useSelector, useDispatch} from 'react-redux';
 import {logIn} from '@redux/userSlice';
 
-import {SafeAreaView} from 'react-native-safe-area-context';
-
-import {ButtonSimple} from '@shared';
+import {ScreenContainer} from '@shared';
 
 const SuggestedBaskets = ({navigation}) => {
   const dispatch = useDispatch();
@@ -17,19 +15,17 @@ const SuggestedBaskets = ({navigation}) => {
   }, [loggedIn]);
 
   return (
-    <SafeAreaView>
+    <ScreenContainer>
       <View>
         <Text>These portfolios would be perfect for you!</Text>
       </View>
-      <ButtonSimple
-        label="log in"
+      <Button
+        title="log in"
         onPress={() => {
           dispatch(logIn('le token'));
         }}
       />
-
-      {/* <ButtonSimple label="Next Step" onPress={() => navigation.popToTop()} /> */}
-    </SafeAreaView>
+    </ScreenContainer>
   );
 };
 

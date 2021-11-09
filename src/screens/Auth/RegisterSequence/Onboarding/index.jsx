@@ -1,24 +1,23 @@
 import React from 'react';
 
-import {View, Text} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {View, Text, Button} from 'react-native';
 
-import {ButtonSimple} from '@shared';
+import {ScreenContainer} from '@shared';
 
 const OnboardingPrompt = ({navigation}) => {
   return (
-    <SafeAreaView>
+    <ScreenContainer>
       <View>
         <Text>
           Answer this small questionare so we can show you the best options for
           you to invest
         </Text>
       </View>
-      <ButtonSimple
-        label="Next Step"
+      <Button
+        title="Next Step"
         onPress={() => navigation.navigate('RiskAssessment')}
       />
-    </SafeAreaView>
+    </ScreenContainer>
   );
 };
 

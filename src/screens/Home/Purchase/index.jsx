@@ -1,11 +1,13 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
+import {ScreenContainer} from '@shared';
+
 const Purchase = () => {
   return (
-    <View>
+    <ScreenContainer>
       <Text>Purchase MEEEEE!</Text>
-    </View>
+    </ScreenContainer>
   );
 };
 

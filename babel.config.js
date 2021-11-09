@@ -10,6 +10,7 @@ module.exports = {
           '@shared': './src/shared',
           '@redux': './src/redux',
           '@nav': './src/nav',
+          '@util': './src/util',
         },
       },
     ],

@@ -10,9 +10,9 @@ import HomeNav from './HomeNav';
 
 import {useSelector} from 'react-redux';
 
-const Base = ({userToken}) => {
-  const RootStack = createNativeStackNavigator();
+const RootStack = createNativeStackNavigator();
 
+const Base = ({userToken}) => {
   //   const [isLoading, setIsLoading] = useState(true);
   //   useEffect(() => {
   //     setTimeout(() => {

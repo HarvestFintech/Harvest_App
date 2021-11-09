@@ -1,9 +1,11 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
+import {ScreenContainer} from '@shared';
+
 const News = () => {
   return (
-    <View>
+    <ScreenContainer>
       <Text>THE NEWS</Text>
 
       <View>
@@ -21,7 +23,7 @@ const News = () => {
         <Text>Article 3</Text>
         <Text>Article Content</Text>
       </View>
-    </View>
+    </ScreenContainer>
   );
 };
 

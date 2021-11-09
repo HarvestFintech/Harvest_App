@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 import {StyleSheet, ScrollView, View, Text} from 'react-native';
 
 import {Divider, Icon} from 'react-native-elements';
@@ -6,6 +8,23 @@ import {Divider, Icon} from 'react-native-elements';
 import {ScreenContainer} from '@shared';
 
 const Dashboard = () => {
+  const { token } = useSelector(({userInfo}) => userInfo);
+
+  useEffect( () => {
+    const getUserInfo = async (token) => {
+      if(token && token.length){
+        let res = await axios.get('http://localhost:7070/user/dashboard', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
+        // TODO: STORE USER INFO
+        alert(`Hello ${res.data.payload.name}!`);
+      }
+    }
+    getUserInfo(token);
+  }, [token])
+
   return (
     <ScreenContainer>
       <View style={[styles.titleSection, styles.center]}>

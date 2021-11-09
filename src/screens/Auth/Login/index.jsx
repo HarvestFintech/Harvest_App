@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {View, Text} from 'react-native';
 
 import {Input, Icon, Button} from 'react-native-elements';
 
 import {useSelector, useDispatch} from 'react-redux';
-import {logIn} from '@redux/userSlice';
+import { updateToken } from '@redux/userSlice';
 
 import {Logo, ScreenContainer} from '@shared';
 import axios from 'axios';
 
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const status = useSelector(({userInfo}) => userInfo);
+
+  const handleLogin = async (email, password) => {
+    let res = await axios
+      .post('http://localhost:7070/auth/login', {
+        email,
+        password
+      }, {});
+      if (res.data.status === 200) {
+        dispatch(updateToken(res.data.payload.token));
+      } else {
+        // silent error
+      }
+  };
 
   return (
     <ScreenContainer>
@@ -21,23 +36,26 @@ const Login = ({navigation}) => {
         <Input
           placeholder="email@address.com"
           label="Your Email Address"
+          onChangeText={(email) => setEmail(email)}
           leftIcon={<Icon name="person-circle" type="ionicon" />}
         />
         <Input
           placeholder="Password"
           label="Password"
+          onChangeText={(password) => setPassword(password)}
           leftIcon={<Icon name="lock-closed" type="ionicon" />}
         />
 
         <Button
           title="log into my account"
           onPress={() =>
-            dispatch(
+            handleLogin(email.toLowerCase(), password.toLowerCase())
+            /*dispatch(
               logIn({
-                username: 'larry',
-                password: 'password',
+                email: email.toLowerCase(),
+                password: password.toLowerCase(),
               }),
-            )
+            )*/
           }
         />
 

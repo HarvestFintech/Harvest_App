@@ -10,19 +10,22 @@ export const userSlice = createSlice({
     userData: {},
   },
   reducers: {
-    logIn: (state, action) => {
-      console.log('login request start');
-
-      axios
-        .get('https://jsonplaceholder.typicode.com/todos/1')
-        .then(res => console.log(res))
-        .catch(err => console.error(err));
-
-      axios
-        .post('https://192.168.1.17:7070/auth/login', action.payload)
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+    updateToken: (state, action) => {
       state.token = action.payload;
+      state.isLoggedIn = true;
+    },
+    logIn: async (state, action) => {
+      console.log('login request start');
+      let res = await axios
+        .post('http://localhost:7070/auth/login', action.payload, {});
+
+      if (res.data.status === 200) {
+        console.log(res.data.payload.token);
+        state.token = res.data.payload.token;
+      } else {
+        // silent error
+      }
+
       state.isLoggedIn = true;
       state.userData = {};
 
@@ -37,7 +40,7 @@ export const userSlice = createSlice({
 });
 
 // ACTIONS EXPORT
-export const {logIn, logOut} = userSlice.actions;
+export const {logIn, logOut, updateToken} = userSlice.actions;
 
 // export const addThunk =
 //   (step = 1) =>

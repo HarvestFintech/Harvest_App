@@ -13,13 +13,13 @@ import {NavigationContainer} from '@react-navigation/native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import Base from '@nav/Root';
-import AppTheme from '@util/theme';
+// import AppTheme from '@util/theme';
 
 const App = () => (
   <ReduxProvider store={store}>
     {/* loading={<LoadingMarkup />} */}
     <PersistGate loading={null} persistor={persistor}>
-      <NavigationContainer theme={AppTheme}>
+      <NavigationContainer>
         <SafeAreaProvider>
           <Base />
         </SafeAreaProvider>

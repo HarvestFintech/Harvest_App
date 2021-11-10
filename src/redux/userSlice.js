@@ -13,15 +13,20 @@ export const userSlice = createSlice({
     logIn: (state, action) => {
       console.log('login request start');
 
-      axios
-        .get('https://jsonplaceholder.typicode.com/todos/1')
-        .then(res => console.log(res))
-        .catch(err => console.error(err));
+      //   axios
+      //     .post('https://192.168.1.17:7070/auth/login', action.payload)
+      //     .then(res => console.log(res))
+      //     .catch(err => console.log(err));
 
-      axios
-        .post('https://192.168.1.17:7070/auth/login', action.payload)
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+      fetch('https://localhost:7070/auth/login')
+        .then(response => response.json())
+        .then(json => {
+          console.log('json.movies');
+        })
+        .catch(error => {
+          console.error(error);
+        });
+
       state.token = action.payload;
       state.isLoggedIn = true;
       state.userData = {};

@@ -1,6 +1,7 @@
 import {configureStore} from '@reduxjs/toolkit';
 
 import userReducer from './userSlice';
+import registerReducer from './registerSlice';
 
 import {combineReducers} from 'redux';
 import storage from '@react-native-async-storage/async-storage';
@@ -20,6 +21,7 @@ import {
 
 const rootReducer = combineReducers({
   userInfo: userReducer,
+  registerInfo: registerReducer,
 });
 
 // persist config obj

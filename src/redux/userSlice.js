@@ -1,38 +1,22 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-import axios from 'axios';
-
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
     isLoggedIn: false,
-    token: null,
+    token: '',
     userData: {},
   },
   reducers: {
     updateToken: (state, action) => {
       state.token = action.payload;
-      state.isLoggedIn = true;
     },
-    logIn: async (state, action) => {
-      console.log('login request start');
-      let res = await axios
-        .post('http://localhost:7070/auth/login', action.payload, {});
-
-      if (res.data.status === 200) {
-        console.log(res.data.payload.token);
-        state.token = res.data.payload.token;
-      } else {
-        // silent error
-      }
-
+    logIn: (state, action) => {
+      state.userData = action.payload;
       state.isLoggedIn = true;
-      state.userData = {};
-
-      console.log('login request end');
     },
     logOut: state => {
-      state.token = null;
+      state.token = '';
       state.isLoggedIn = false;
       state.userData = {};
     },

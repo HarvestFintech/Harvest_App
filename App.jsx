@@ -30,4 +30,4 @@ const App = () => (
 
 export default App;
 
-// TODO: Add react-native-vector-icons compatibility for ios (see docs https://github.com/oblador/react-native-vector-icons#ios)
+// Add react-native-vector-icons compatibility for ios (see docs https://github.com/oblador/react-native-vector-icons#ios)

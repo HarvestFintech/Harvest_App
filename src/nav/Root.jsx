@@ -12,15 +12,7 @@ import {useSelector} from 'react-redux';
 
 const RootStack = createNativeStackNavigator();
 
-const Base = ({userToken}) => {
-  //   const [isLoading, setIsLoading] = useState(true);
-  //   useEffect(() => {
-  //     setTimeout(() => {
-  //       setIsLoading(false);
-  //       console.log(isLoggedIn);
-  //     }, 2000);
-  //   }, []);
-
+const Base = () => {
   const userStatus = useSelector(({userInfo}) => userInfo.isLoggedIn);
   const [isLoggedIn, setIsLoggedIn] = useState(userStatus);
 

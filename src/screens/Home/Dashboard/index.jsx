@@ -1,29 +1,47 @@
-import React, { useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+
+import {useSelector, useDispatch} from 'react-redux';
+import {logIn} from '@redux/userSlice';
+
 import {StyleSheet, ScrollView, View, Text} from 'react-native';
 
 import {Divider, Icon} from 'react-native-elements';
 
 import {ScreenContainer} from '@shared';
 
-const Dashboard = () => {
-  const { token } = useSelector(({userInfo}) => userInfo);
+import {API_URL} from '@env';
 
-  useEffect( () => {
-    const getUserInfo = async (token) => {
-      if(token && token.length){
-        let res = await axios.get('http://localhost:7070/user/dashboard', {
+const Dashboard = () => {
+  const dispatch = useDispatch();
+  const {token} = useSelector(({userInfo}) => userInfo);
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const endpoint = `${API_URL}/user/dashboard`;
+
+  //   LOAD USER DATA WHEN DASHBOARD PAGE IS LOADED
+  useEffect(() => {
+    async token => {
+      if (token && token.length) {
+        const {
+          data: {status, payload},
+          data,
+        } = await axios.get(endpoint, {
           headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        })
-        // TODO: STORE USER INFO
-        alert(`Hello ${res.data.payload.name}!`);
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        // DOUBLE CHECK IF TOKEN US VALID/NOT EXPIRED (THIS IS TO DISPLAY ERROR MESSAGES ONSCREEN)
+        if (status === 200) {
+          dispatch(logIn(payload));
+        }
+        //! vv REMOVE THIS ALERT IN PRODUCTION vv
+        alert(`Hello ${payload.name}!`);
       }
-    }
-    getUserInfo(token);
-  }, [token])
+    };
+  }, [token]);
 
   return (
     <ScreenContainer>

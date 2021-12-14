@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
-import {View, Text, Button} from 'react-native';
+import {StyleSheet, View, Button} from 'react-native';
+import {Text} from 'react-native-elements';
 
 import {useSelector, useDispatch} from 'react-redux';
 import {logIn} from '@redux/userSlice';
 
-import {ScreenContainer} from '@shared';
+import {ScreenContainer, ButtonPrimary} from '@shared';
 
 const SuggestedBaskets = ({navigation}) => {
   const dispatch = useDispatch();
@@ -17,9 +18,11 @@ const SuggestedBaskets = ({navigation}) => {
   return (
     <ScreenContainer>
       <View>
-        <Text>These portfolios would be perfect for you!</Text>
+        <Text h3 style={styles.text}>
+          These portfolios would be perfect for you!
+        </Text>
       </View>
-      <Button
+      <ButtonPrimary
         title="log in"
         onPress={() => {
           dispatch(logIn('le token'));
@@ -30,3 +33,13 @@ const SuggestedBaskets = ({navigation}) => {
 };
 
 export default SuggestedBaskets;
+
+const styles = StyleSheet.create({
+  text: {
+    color: 'white',
+    textAlign: 'center',
+  },
+  title: {
+    marginBottom: 30,
+  },
+});

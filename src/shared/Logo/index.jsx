@@ -1,12 +1,28 @@
 import React from 'react';
-import {Image} from 'react-native';
-import tw from 'tailwind-react-native-classnames';
+import {StyleSheet, Image} from 'react-native';
+// import {Image} from 'react-native-elements';
 
-import img from './logo.png';
+import logo from './logo.png';
+import logoText from './logoText.png';
 
-const Logo = ({size}) => {
-  const dim = size || 16;
-  return <Image source={img} style={tw`w-${dim} h-${dim}`} />;
+const Logo = ({text}) => {
+  let destImg = '';
+  text ? (destImg = logoText) : (destImg = logo);
+  return (
+    <Image
+      source={destImg}
+      style={[styles.default, text && styles.logoText, !text && styles.logo]}
+    />
+  );
 };
+
+const styles = StyleSheet.create({
+  default: {},
+  logo: {
+    width: 16,
+    height: 16,
+  },
+  logoText: {},
+});
 
 export default Logo;

@@ -22,11 +22,11 @@ const RiskAssessment = [
   {
     q: 'What would you do during financial market declines?',
     a: [
-      'Sell all of my stock investments',
-      'Sell some of my stock investments',
+      'Sell all of my investments',
+      'Sell some of my investments',
       'Make no changes',
-      'Increase some of my stock investments',
-      'Increase all of my stock investments',
+      'Increase some investments',
+      'Increase all of my investments',
     ],
   },
   {

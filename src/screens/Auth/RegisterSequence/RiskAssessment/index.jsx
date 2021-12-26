@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Button} from 'react-native';
-import {Text, ButtonGroup} from 'react-native-elements';
+import {ButtonGroup} from 'react-native-elements';
 
-import {ScreenContainer, ButtonPrimary, ButtonClear} from '@shared';
+import {ScreenContainer, ButtonPrimary, ButtonClear, Text} from '@shared';
 
 import riskAssessment from './qa';
 
@@ -16,7 +16,7 @@ const RiskAssessment = ({navigation}) => {
 
   const handleNext = () => {
     console.log(answers);
-    setAnswers((answers[0] = 1));
+    // setAnswers((answers[0] = 1));
     console.log(answers);
 
     setPage(page + 1);
@@ -66,8 +66,8 @@ export default RiskAssessment;
 
 const styles = StyleSheet.create({
   text: {
-    color: 'white',
     textAlign: 'center',
+    color: 'white',
   },
   title: {
     marginBottom: 30,
@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#DBD8FD80',
     borderRadius: 6,
+    minWidth: 300,
   },
   buttonSelected: {
     backgroundColor: '#F0750A',

@@ -44,8 +44,8 @@ const HomeNav = () => {
       })}
       initialRouteName="dashboard"
       backBehavior="history">
-      <Tab.Screen name="baskets" component={Baskets} />
       <Tab.Screen name="purchase" component={Purchase} />
+      <Tab.Screen name="baskets" component={Baskets} />
       <Tab.Screen name="dashboard" component={Dashboard} />
 
       {/* vvv EDIT TAB BAR BADGE TO REFLECT UNREAD NEWS ARTICLES vvv */}

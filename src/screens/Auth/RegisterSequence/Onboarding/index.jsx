@@ -11,7 +11,7 @@ const OnboardingPrompt = ({navigation}) => {
   return (
     <ScreenContainer centerX logo>
       <View style={styles.textContainer}>
-        <Text h4 style={[styles.text, styles.title]}>
+        <Text h2 style={[styles.text, styles.title]}>
           Risk Assesment Survey
         </Text>
         <Text style={styles.text}>

@@ -1,14 +1,14 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-const Basket = () => {
+const Avatar = () => {
   return (
     <View>
-      <Text>basket!</Text>
+      <Text>avatarrr</Text>
     </View>
   );
 };
 
-export default Basket;
+export default Avatar;
 
 const styles = StyleSheet.create({});

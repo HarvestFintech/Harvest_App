@@ -3,8 +3,6 @@ import React, {useState, useEffect} from 'react';
 // NAVIGATION
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {Splash} from '@screens';
-
 import AuthNav from './AuthNav';
 import HomeNav from './HomeNav';
 

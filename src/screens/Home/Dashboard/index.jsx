@@ -4,11 +4,11 @@ import axios from 'axios';
 import {useSelector, useDispatch} from 'react-redux';
 import {logIn} from '@redux/userSlice';
 
-import {StyleSheet, ScrollView, View, Text} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
 import {Divider, Icon} from 'react-native-elements';
 
-import {ScreenContainer} from '@shared';
+import {ScreenContainer, ScrollView, Text, Caret} from '@shared';
 
 import {API_URL} from '@env';
 
@@ -45,27 +45,29 @@ const Dashboard = () => {
 
   return (
     <ScreenContainer>
-      <View style={[styles.titleSection, styles.center]}>
-        <Text>Account Balance</Text>
-        <Text style={styles.title}>$000,000</Text>
-        <Text>
-          <Text>Today's Gain</Text>
-          <Text> ICON 2.11%</Text>
-        </Text>
-      </View>
-      <View style={styles.chart}>
-        <Text>Evolution Graph</Text>
-      </View>
-      <Text style={styles.textCenter}>Aug 1 - Sep 1</Text>
-      <View style={[styles.row, styles.centerRow]}>
-        <Text>1M</Text>
-        <Text>3M</Text>
-        <Text>1Y</Text>
-        <Text>YTD</Text>
-        <Text>All Time</Text>
-      </View>
+      <ScrollView>
+        <View style={[styles.titleSection, styles.center]}>
+          <Text h4>Account Balance</Text>
+          <Text style={styles.title}>$000,000</Text>
+          <View style={styles.row}>
+            <Text>Today's Gain</Text>
+            <Caret value={2.11} />
+          </View>
+        </View>
+        <View style={styles.chart}>
+          <Text>Evolution Graph</Text>
+        </View>
+        <Text style={[styles.textCenter, styles.dateRange]}>Aug 1 - Sep 1</Text>
+        <View style={[styles.row, styles.centerRow, styles.datesRow]}>
+          <Text style={styles.dateSelected} dark>
+            1M
+          </Text>
+          <Text dark>3M</Text>
+          <Text dark>1Y</Text>
+          <Text dark>YTD</Text>
+          <Text dark>All Time</Text>
+        </View>
 
-      <ScrollView style={styles.orange}>
         <View>
           <View>
             <Text>P/L</Text>
@@ -123,11 +125,36 @@ export default Dashboard;
 
 const styles = StyleSheet.create({
   datesRow: {
-    backgroundColor: 'pink',
+    backgroundColor: '#CBC7ED',
+    height: 40,
+    width: 250,
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    alignSelf: 'center',
+  },
+  dateSelected: {
+    backgroundColor: '#FFFFFB',
+    borderRadius: 12,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
+  },
+  dateRange: {
+    marginVertical: 20,
+    textDecorationLine: 'underline',
   },
   row: {
     flexDirection: 'row',
-    alignItems: 'center',
   },
   titleSection: {
     height: '30%',
@@ -145,14 +172,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   chart: {
-    backgroundColor: 'pink',
+    backgroundColor: 'red',
+    // marginHorizontal: -30,
     height: '20%',
   },
   textCenter: {
     textAlign: 'center',
-  },
-  orange: {
-    backgroundColor: 'orange',
-    marginTop: 20,
   },
 });

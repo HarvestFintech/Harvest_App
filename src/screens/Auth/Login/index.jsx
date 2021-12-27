@@ -6,7 +6,7 @@ import {Icon, Button} from 'react-native-elements';
 import {useDispatch} from 'react-redux';
 import {updateToken, logOut} from '@redux/userSlice';
 
-import {ScreenContainer, Input, ButtonPrimary} from '@shared';
+import {ScreenContainer, Input, TextInput, ButtonPrimary} from '@shared';
 import axios from 'axios';
 
 import {API_URL} from '@env';
@@ -35,7 +35,7 @@ const Login = ({navigation}) => {
       data: {status, payload},
       data,
     } = await axios.post(
-      endpoint,
+      `${API_URL}/auth/login`,
       {
         email,
         password,
@@ -70,12 +70,16 @@ const Login = ({navigation}) => {
           <Input
             label="Email"
             onChangeText={e => setEmail(e)}
+            autoCapitalize="none"
+            autoCorrect={false}
             //   leftIcon={<Icon name="person-circle" type="ionicon" />}
           />
           <Input
             label="Password"
             onChangeText={e => setPassword(e)}
             errorMessage={loadError}
+            autoCapitalize="none"
+            autoCorrect={false}
             //   leftIcon={<Icon name="lock-closed" type="ionicon" />}
           />
           <Button

@@ -2,32 +2,52 @@ import React, {useState} from 'react';
 import {StyleSheet, View, Button} from 'react-native';
 import {ButtonGroup} from 'react-native-elements';
 
+import axios from 'axios';
+
 import {ScreenContainer, ButtonPrimary, ButtonClear, Text} from '@shared';
 
 import riskAssessment from './qa';
 
+import {API_URL} from '@env';
+
 const RiskAssessment = ({navigation}) => {
   const [page, setPage] = useState(0);
   const [selected, setSelected] = useState(0);
-  const [answers, setAnswers] = useState([4, 3, 5, 6]);
+  const [answers, setAnswers] = useState([]);
   const buttons = riskAssessment;
 
-  const updateIndex = selected => setSelected(selected);
-
   const handleNext = () => {
-    console.log(answers);
-    // setAnswers((answers[0] = 1));
-    console.log(answers);
-
+    setSelected(0);
     setPage(page + 1);
   };
   const handlePrev = () => {
+    // const backArray = answers.splice(-1, 1);
+    // setAnswers(backArray);
     setPage(page - 1);
   };
 
   const handleFinish = () => {
     //   TODO:AJ create call to backend and add answers to DB
-    navigation.navigate('SuggestedBaskets');
+
+    // const nextArray = answers.push(selected);
+    // setAnswers(nextArray);
+    console.log(answers);
+
+    if (page < 2) {
+      handleNext();
+    } else {
+      const {
+        data: {status, payload},
+        data,
+      } = axios.post(`${API_URL}/auth/login`, {
+        answers,
+      });
+
+      if (status === 200 && payload.token) {
+        //   Navigate to suggested baskets if register request was successful
+        navigation.navigate('SuggestedBaskets');
+      }
+    }
   };
 
   return (
@@ -43,19 +63,21 @@ const RiskAssessment = ({navigation}) => {
           selectedButtonStyle={styles.buttonSelected}
           containerStyle={styles.container}
           buttonContainerStyle={styles.buttonContainer}
-          onPress={() => updateIndex()}
+          onPress={value => {
+            console.log(value);
+            setSelected(value);
+          }}
           selectedIndex={selected}
           buttons={buttons[page].a}
         />
         <View style={styles.navButtons}>
-          {page != 0 && (
+          {page > 0 && (
             <ButtonClear title="Back" onPress={() => handlePrev()} />
           )}
-          {page == buttons.length - 1 ? (
-            <ButtonPrimary title="Finish" onPress={() => handleFinish()} />
-          ) : (
-            <ButtonPrimary title="Next Step" onPress={() => handleNext()} />
-          )}
+          <ButtonPrimary
+            title={page == 2 ? 'Finish' : 'Next'}
+            onPress={() => handleFinish(answers)}
+          />
         </View>
       </View>
     </ScreenContainer>

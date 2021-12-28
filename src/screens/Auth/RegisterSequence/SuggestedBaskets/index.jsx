@@ -1,19 +1,26 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Text} from 'react-native-elements';
+import axios from 'axios';
 
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {logIn} from '@redux/userSlice';
 
 import {ScreenContainer, ScrollView, ButtonPrimary, Basket} from '@shared';
 
+import {API_URL} from '@env';
+
 const SuggestedBaskets = ({navigation}) => {
   const dispatch = useDispatch();
-  const loggedIn = useSelector(({userInfo}) => userInfo);
 
   useEffect(() => {
-    console.log(loggedIn);
-  }, [loggedIn]);
+    //   TODO:AJ Handle getting portfolios from backend
+    // GET SUGGESTED PORTFOLIOS
+    const {
+      data: {status, payload},
+      data,
+    } = axios.push(`${API_URL}/auth/login`, {});
+  }, []);
 
   return (
     <ScreenContainer>
@@ -28,7 +35,7 @@ const SuggestedBaskets = ({navigation}) => {
         <ButtonPrimary
           title="Go straight to dashboard"
           onPress={() => {
-            dispatch(logIn('le token'));
+            dispatch(logIn());
           }}
         />
       </View>

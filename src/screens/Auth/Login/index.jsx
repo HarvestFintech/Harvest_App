@@ -4,7 +4,7 @@ import {View, StyleSheet} from 'react-native';
 import {Icon, Button} from 'react-native-elements';
 
 import {useDispatch} from 'react-redux';
-import {updateToken, logOut} from '@redux/userSlice';
+import {updateToken, logOut, logIn} from '@redux/userSlice';
 
 import {ScreenContainer, Input, ButtonPrimary, Text} from '@shared';
 import axios from 'axios';
@@ -46,12 +46,11 @@ const Login = ({navigation}) => {
     // CASE SUCCESS: UPDATETOKEN (ADD VALID TOKEN TO REDUX AND SET LOGIN TO TRUE)
     if (status === 200 && payload.token) {
       setLoadError('status is 200!!!');
-      console.log(payload);
-      const token = payload.token;
-      dispatch(updateToken(token));
-
-      //   CASE FAIL: LOGOUT (REMOVE TOKEN AND USER DATA, SET LOGIN TO FALSE)
+      console.log(loadError, payload);
+      dispatch(updateToken(payload.token));
+      dispatch(logIn());
     } else {
+      //   CASE FAIL: LOGOUT (REMOVE TOKEN AND USER DATA, SET LOGIN TO FALSE)
       setLoadError(payload.error);
       dispatch(logOut());
     }
@@ -120,7 +119,8 @@ const Login = ({navigation}) => {
           titleStyle={styles.buttonRegister}
           title="REGISTER"
           type="clear"
-          onPress={() => navigation.replace('Register')}
+          //   ! CHANGE TO REGISTER WHEN FINISHED DEBUGGING
+          onPress={() => navigation.replace('RiskAssessment')}
         />
       </View>
     </ScreenContainer>

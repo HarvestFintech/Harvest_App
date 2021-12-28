@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import {useDispatch} from 'react-redux';
 import {updateToken} from '@redux/userSlice';
@@ -20,12 +20,15 @@ import {
   ButtonClear,
 } from '@shared';
 
+import {chunk} from 'lodash';
+
 import {API_URL} from '@env';
 
 const Register = ({navigation}) => {
   const dispatch = useDispatch();
 
   const [page, setPage] = useState(0);
+  const [clump, setClump] = useState({});
 
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -33,12 +36,28 @@ const Register = ({navigation}) => {
   const endpoint = `${API_URL}/auth/signup`;
 
   const handleNext = () => {
-    console.log('hello');
     setPage(page + 1);
   };
   const handlePrev = () => {
     setPage(page - 1);
   };
+
+  useEffect(() => {
+    const part = chunk(
+      [
+        'fname',
+        'lname',
+        'email',
+        'birthDate',
+        'address',
+        'zipcode',
+        'password',
+        'pwd2',
+      ],
+      3,
+    )[page];
+    setClump(userSchema.pick(part));
+  }, [page]);
 
   //   HANDLE REGISTER BUTTON (WILL BE MOVED TO "REGISTER 3" WHEN ONBOARDING SEQUENCE IS COMPLETED)
   const handleRegister = async ({
@@ -51,13 +70,11 @@ const Register = ({navigation}) => {
     password,
     pwd2,
   }) => {
-    console.log(page);
     if (page != 2) {
       handleNext();
     } else {
       setIsLoading(true);
       password != pwd2 && console.error(`passwords don't match!`);
-      console.log(password, pwd2);
 
       const {
         data: {status, payload},
@@ -86,18 +103,6 @@ const Register = ({navigation}) => {
     }
   };
 
-  const schema = userSchema.pick([
-    'fname',
-    'lname',
-    'email',
-    'birthDate',
-    'address',
-    'zipcode',
-    'password',
-  ]);
-
-  // values => handleRegister(values)
-
   return (
     <ScreenContainer center logo>
       <Text h3 style={[styles.text, styles.title]}>
@@ -113,8 +118,8 @@ const Register = ({navigation}) => {
           zipcode: '',
           password: '',
         }}
-        // validationSchema={schema}
-        onSubmit={values => console.log(values)}>
+        validationSchema={clump}
+        onSubmit={values => handleRegister(values)}>
         {({
           handleChange,
           handleSubmit,
@@ -131,7 +136,7 @@ const Register = ({navigation}) => {
                   value={values.fname}
                   onChangeText={handleChange('fname')}
                   onBlur={handleBlur('email')}
-                  errorMessage={touched.fname && errors.fname}
+                  errorMessage={errors.fname}
                 />
                 <Input
                   label="Last name"
@@ -176,12 +181,15 @@ const Register = ({navigation}) => {
                   label="Password"
                   value={values.password}
                   onChangeText={handleChange('password')}
+                  errorMessage={touched.password && errors.password}
+
                   //   secureTextEntry // uncomment to obscure input content
                 />
                 <Input
                   label="Repeat Password"
                   value={values.pwd2}
                   onChangeText={handleChange('pwd2')}
+                  errorMessage={touched.pwd2 && errors.pwd2}
                   // secureTextEntry // uncomment to obscure input content
                 />
               </>
@@ -191,11 +199,10 @@ const Register = ({navigation}) => {
               {page > 0 && (
                 <ButtonClear title="Back" onPress={() => handlePrev()} />
               )}
-              {page == 2 ? (
-                <ButtonPrimary title="Register" onPress={handleSubmit} />
-              ) : (
-                <ButtonPrimary title="Next" onPress={() => handleNext()} />
-              )}
+              <ButtonPrimary
+                title={page == 2 ? 'Register' : 'Next'}
+                onPress={handleSubmit}
+              />
             </View>
           </View>
         )}

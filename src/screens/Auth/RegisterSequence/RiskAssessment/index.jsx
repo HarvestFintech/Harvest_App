@@ -21,17 +21,16 @@ const RiskAssessment = ({navigation}) => {
     setPage(page + 1);
   };
   const handlePrev = () => {
-    // const backArray = answers.splice(-1, 1);
-    // setAnswers(backArray);
+    answers.splice(-1, 1);
+    setAnswers(answers);
     setPage(page - 1);
   };
 
   const handleFinish = () => {
     //   TODO:AJ create call to backend and add answers to DB
 
-    // const nextArray = answers.push(selected);
-    // setAnswers(nextArray);
-    console.log(answers);
+    answers[page] = selected;
+    setAnswers(answers);
 
     if (page < 2) {
       handleNext();
@@ -63,10 +62,7 @@ const RiskAssessment = ({navigation}) => {
           selectedButtonStyle={styles.buttonSelected}
           containerStyle={styles.container}
           buttonContainerStyle={styles.buttonContainer}
-          onPress={value => {
-            console.log(value);
-            setSelected(value);
-          }}
+          onPress={value => setSelected(value)}
           selectedIndex={selected}
           buttons={buttons[page].a}
         />

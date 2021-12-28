@@ -20,8 +20,6 @@ const Login = ({navigation}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [loadError, setLoadError] = useState('');
 
-  const endpoint = `${API_URL}/auth/login`;
-
   //   HANDLE LOGIN BUTTON
   const handleLogin = async ({email, password}) => {
     setIsLoading(true);

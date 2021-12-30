@@ -8,6 +8,7 @@ import {
   Onboarding,
   RiskAssessment,
   SuggestedBaskets,
+  ForgotPassword,
 } from '@screens/Auth';
 
 const Stack = createNativeStackNavigator();
@@ -19,6 +20,7 @@ const AuthStack = () => {
       initialRouteName="Login">
       <Stack.Group>
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       </Stack.Group>
       <Stack.Group>
         <Stack.Screen name="Register" component={Register} />

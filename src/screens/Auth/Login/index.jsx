@@ -84,6 +84,7 @@ const Login = ({navigation}) => {
                 onBlur={handleBlur('email')}
                 errorMessage={touched.email && errors.email}
                 keyboardType="email-address"
+                autoCapitalize="none"
                 //   leftIcon={<Icon name="person-circle" type="ionicon" />}
               />
               <Input
@@ -92,6 +93,7 @@ const Login = ({navigation}) => {
                 value={values.password}
                 onBlur={handleBlur('password')}
                 errorMessage={touched.password && errors.password}
+                autoCapitalize="none"
                 // secureTextEntry // uncomment to obscure input content
                 //   leftIcon={<Icon name="lock-closed" type="ionicon" />}
               />
@@ -119,7 +121,7 @@ const Login = ({navigation}) => {
           title="REGISTER"
           type="clear"
           //   ! CHANGE TO REGISTER WHEN FINISHED DEBUGGING
-          onPress={() => navigation.replace('SuggestedBaskets')}
+          onPress={() => navigation.replace('Register')}
         />
       </View>
     </ScreenContainer>

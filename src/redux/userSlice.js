@@ -11,8 +11,10 @@ export const userSlice = createSlice({
     updateToken: (state, action) => {
       state.token = action.payload;
     },
-    logIn: (state, action) => {
+    updateUserData: (state, action) => {
       state.userData = action.payload;
+    },
+    logIn: state => {
       state.isLoggedIn = true;
     },
     logOut: state => {
@@ -24,7 +26,7 @@ export const userSlice = createSlice({
 });
 
 // ACTIONS EXPORT
-export const {logIn, logOut, updateToken} = userSlice.actions;
+export const {logIn, logOut, updateToken, updateUserData} = userSlice.actions;
 
 // export const addThunk =
 //   (step = 1) =>

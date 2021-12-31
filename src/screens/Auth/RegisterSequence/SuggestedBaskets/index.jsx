@@ -93,12 +93,12 @@ const SuggestedBaskets = ({navigation}) => {
     // }
 
     // ! uncomment above / comment below when connecting to backend!!!!!!!!
-    const recommendedBaskets = [2, 4];
-    const finalBaskets = getRecommendedBaskets(
-      exampleBaskets,
-      recommendedBaskets,
-    );
-    setRecommended(finalBaskets);
+    // const recommendedBaskets = [2, 4];
+    // const finalBaskets = getRecommendedBaskets(
+    //   exampleBaskets,
+    //   recommendedBaskets,
+    // );
+    // setRecommended(finalBaskets);
 
   }, []);
 

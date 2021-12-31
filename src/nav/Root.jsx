@@ -3,8 +3,6 @@ import React, {useState, useEffect} from 'react';
 // NAVIGATION
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {Splash} from '@screens';
-
 import AuthNav from './AuthNav';
 import HomeNav from './HomeNav';
 
@@ -12,15 +10,7 @@ import {useSelector} from 'react-redux';
 
 const RootStack = createNativeStackNavigator();
 
-const Base = ({userToken}) => {
-  //   const [isLoading, setIsLoading] = useState(true);
-  //   useEffect(() => {
-  //     setTimeout(() => {
-  //       setIsLoading(false);
-  //       console.log(isLoggedIn);
-  //     }, 2000);
-  //   }, []);
-
+const Base = () => {
   const userStatus = useSelector(({userInfo}) => userInfo.isLoggedIn);
   const [isLoggedIn, setIsLoggedIn] = useState(userStatus);
 

@@ -1,40 +1,24 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-import axios from 'axios';
-
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
     isLoggedIn: false,
-    token: null,
+    token: '',
     userData: {},
   },
   reducers: {
-    logIn: (state, action) => {
-      console.log('login request start');
-
-      //   axios
-      //     .post('https://192.168.1.17:7070/auth/login', action.payload)
-      //     .then(res => console.log(res))
-      //     .catch(err => console.log(err));
-
-      fetch('https://localhost:7070/auth/login')
-        .then(response => response.json())
-        .then(json => {
-          console.log('json.movies');
-        })
-        .catch(error => {
-          console.error(error);
-        });
-
+    updateToken: (state, action) => {
       state.token = action.payload;
+    },
+    updateUserData: (state, action) => {
+      state.userData = action.payload;
+    },
+    logIn: state => {
       state.isLoggedIn = true;
-      state.userData = {};
-
-      console.log('login request end');
     },
     logOut: state => {
-      state.token = null;
+      state.token = '';
       state.isLoggedIn = false;
       state.userData = {};
     },
@@ -42,7 +26,7 @@ export const userSlice = createSlice({
 });
 
 // ACTIONS EXPORT
-export const {logIn, logOut} = userSlice.actions;
+export const {logIn, logOut, updateToken, updateUserData} = userSlice.actions;
 
 // export const addThunk =
 //   (step = 1) =>

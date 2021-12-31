@@ -1,9 +1,8 @@
 export {default as Login} from './Login';
+export {default as ForgotPassword} from './ForgotPassword';
 
 export {
   Register,
-  Register2,
-  Register3,
   Onboarding,
   RiskAssessment,
   SuggestedBaskets,

@@ -63,35 +63,40 @@ const SuggestedBaskets = ({navigation}) => {
   });
 
   useEffect(() => {
-    const recommendedBaskets = [2, 4];
+    // const recommendedBaskets = [2, 4];
     //   TODO:AJ Handle getting portfolios from backend
     // GET SUGGESTED PORTFOLIOS
+    const loadDashboardContent = async () => {
+      const {
+        data: {status, payload},
+        data,
+      } = await axios.get(`${API_URL}/user/dashboard`, {
+        headers: {
+          Authorization: token
+        }
+      });
+      if (status === 200) {
+        dispatch(updateUserData(payload));
+        // console.log(payload);
+        setUserData(payload);
+        // setRecommended(payload.recommended);
 
-    // const {
-    //   data: {status, payload},
-    //   data,
-    // } = axios.get(`${API_URL}/user/dashboard`, {
-    //   Authorization: token,
-    // });
-    // if (status === 200) {
-    //   dispatch(updateUserData(payload));
-    //   setUserData(payload);
-    //   setRecommended(payload.recommended);
+        const finalBaskets = getRecommendedBaskets(
+          payload.baskets,
+          payload.recommended,
+        );
 
-    // const finalBaskets = getRecommendedBaskets(
-    //   payload.baskets,
-    //   payload.recommended,
-    // );
-
-    // setRecommended(finalBaskets);
-    // }
+        setRecommended(finalBaskets);
+      }
+    }
+    loadDashboardContent();
 
     // ! uncomment above / comment below when connecting to backend!!!!!!!!
-    const finalBaskets = getRecommendedBaskets(
-      exampleBaskets,
-      recommendedBaskets,
-    );
-    setRecommended(finalBaskets);
+    // const finalBaskets = getRecommendedBaskets(
+    //   exampleBaskets,
+    //   recommendedBaskets,
+    // );
+    // setRecommended(finalBaskets);
   }, []);
 
   return (
@@ -100,8 +105,12 @@ const SuggestedBaskets = ({navigation}) => {
         {userData.name}, these portfolios are a perfect fit for you!
       </Text>
       <ScrollView>
-        {recommended.map((basket, index) => (
-          <Basket
+        {recommended.map((basket, index) => {
+          basket.mincrease = 0.12;
+          basket.yincrease = -0.24;
+          basket.badges = ['./recommended.png'];
+
+          return (<Basket
             key={index}
             mreturn={basket.mincrease}
             yreturn={basket.yincrease}
@@ -109,7 +118,7 @@ const SuggestedBaskets = ({navigation}) => {
             harvestIcons={basket.badges}
             data={basket}
           />
-        ))}
+        )} )}
       </ScrollView>
 
       <View style={styles.button}>

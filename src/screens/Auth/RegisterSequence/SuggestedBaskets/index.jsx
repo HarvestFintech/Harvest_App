@@ -106,16 +106,13 @@ const SuggestedBaskets = ({navigation}) => {
       </Text>
       <ScrollView>
         {recommended.map((basket, index) => {
-          basket.mincrease = 0.12;
-          basket.yincrease = -0.24;
-          basket.badges = ['./recommended.png'];
 
           return (<Basket
             key={index}
-            mreturn={basket.mincrease}
-            yreturn={basket.yincrease}
+            mreturn={0.12}
+            yreturn={-0.24}
             coinIcons={basket.coins}
-            harvestIcons={basket.badges}
+            harvestIcons={[1, 2]}
             data={basket}
           />
         )} )}

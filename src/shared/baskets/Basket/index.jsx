@@ -37,54 +37,53 @@ const Basket = ({mreturn, yreturn, coinIcons, harvestIcons, data}) => {
   const sliceColor = ['#F44336', '#2196F3', '#FFEB3B', '#4CAF50', '#FF9800'];
   const {uid, basket_name, coins, partition} = data;
 
-  const dataset = [
-    {
-      name: 'Seoul',
-      population: 21500000,
-      color: 'rgba(131, 167, 234, 1)',
-      legendFontColor: '#7F7F7F',
-      legendFontSize: 15,
-    },
-    {
-      name: 'Toronto',
-      population: 2800000,
-      color: '#F00',
-      legendFontColor: '#7F7F7F',
-      legendFontSize: 15,
-    },
-    {
-      name: 'Beijing',
-      population: 527612,
-      color: 'red',
-      legendFontColor: '#7F7F7F',
-      legendFontSize: 15,
-    },
-    {
-      name: 'New York',
-      population: 8538000,
-      color: '#ffffff',
-      legendFontColor: '#7F7F7F',
-      legendFontSize: 15,
-    },
-    {
-      name: 'Moscow',
-      population: 11920000,
-      color: 'rgb(0, 0, 255)',
-      legendFontColor: '#7F7F7F',
-      legendFontSize: 15,
-    },
-  ];
+  // const dataset = [
+  //   {
+  //     name: 'Seoul',
+  //     population: 21500000,
+  //     color: 'rgba(131, 167, 234, 1)',
+  //     legendFontColor: '#7F7F7F',
+  //     legendFontSize: 15,
+  //   },
+  //   {
+  //     name: 'Toronto',
+  //     population: 2800000,
+  //     color: '#F00',
+  //     legendFontColor: '#7F7F7F',
+  //     legendFontSize: 15,
+  //   },
+  //   {
+  //     name: 'Beijing',
+  //     population: 527612,
+  //     color: 'red',
+  //     legendFontColor: '#7F7F7F',
+  //     legendFontSize: 15,
+  //   },
+  //   {
+  //     name: 'New York',
+  //     population: 8538000,
+  //     color: '#ffffff',
+  //     legendFontColor: '#7F7F7F',
+  //     legendFontSize: 15,
+  //   },
+  //   {
+  //     name: 'Moscow',
+  //     population: 11920000,
+  //     color: 'rgb(0, 0, 255)',
+  //     legendFontColor: '#7F7F7F',
+  //     legendFontSize: 15,
+  //   },
+  // ];
+  //
+  // const chartConfig = {
+  //   backgroundGradientFromOpacity: 0,
+  //   backgroundGradientToOpacity: 0.5,
+  //   // color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+  //   strokeWidth: 10, // optional, default 3
+  //   barPercentage: 0.5,
+  // };
 
-  const chartConfig = {
-    backgroundGradientFromOpacity: 0,
-    backgroundGradientToOpacity: 0.5,
-    color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-    strokeWidth: 10, // optional, default 3
-    barPercentage: 0.5,
-  };
-
-  return (
-    <View style={styles.box}>
+  return (<View style={styles.box}>
       {isModalOpen && (
         <Modal>
           <RNText>partition: [{data.partition.join(', ')}]</RNText>
@@ -103,19 +102,13 @@ const Basket = ({mreturn, yreturn, coinIcons, harvestIcons, data}) => {
       )}
       <View style={[styles.row, styles.spaceOut]}>
         <Text style={styles.title}>{basket_name}</Text>
-        <View style={[styles.row]}>
-          {/* {harvestIcons &&
-            harvestIcons.length > 0 &&
-            harvestIcons.sort().map((post, index) => {
-              return <Image key={index} source={{uri: post}} />;
-            })} */}
-          <Tooltip
+        <View style={styles.row}>
+
+          {/*<Tooltip
             containerStyle={{width: 145, height: 130}}
             popover={
               <Text>
-                {
-                  'when you see this icon, its a recommended portfolio tailored for you!'
-                }
+              when you see this icon, its a recommended portfolio tailored for you!
               </Text>
             }
             overlayColor="rgba(20, 0, 54, 0.9)">
@@ -126,7 +119,7 @@ const Basket = ({mreturn, yreturn, coinIcons, harvestIcons, data}) => {
             coinIcons.sort().map((post, index) => {
               //   <Image key={index} source={require('./hicon.png')} />
               return <Text key={index}>{post}</Text>;
-            })}
+            })}*/}
         </View>
         <Chip
           title="Invest"

@@ -50,7 +50,7 @@ const Basket = ({mreturn, yreturn, coinIcons, harvestIcons, data}) => {
         <Text style={styles.title}>{basket_name}</Text>
         <View style={styles.row}>
 
-          {/*<Tooltip
+          <Tooltip
             containerStyle={{width: 145, height: 130}}
             popover={
               <Text>
@@ -59,8 +59,8 @@ const Basket = ({mreturn, yreturn, coinIcons, harvestIcons, data}) => {
             }
             overlayColor="rgba(20, 0, 54, 0.9)">
             <Image source={img} />
-          </Tooltip>
-          {/* {coinIcons &&
+          </Tooltip>{
+          /* {coinIcons &&
             coinIcons.length > 0 &&
             coinIcons.sort().map((post, index) => {
               //   <Image key={index} source={require('./hicon.png')} />

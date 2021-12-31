@@ -17,6 +17,7 @@ const Baskets = () => {
             mreturn={+140}
             yreturn={-20}
             data={basket}
+            key={basket.uid}
           />
         })}
       </ScrollView>

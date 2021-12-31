@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, View, Button} from 'react-native';
 import {ButtonGroup} from 'react-native-elements';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 
 import axios from 'axios';
 
 import {ScreenContainer, ButtonPrimary, ButtonClear, Text} from '@shared';
 
-import riskAssessment from './qa';
-
 import {API_URL} from '@env';
 
 const RiskAssessment = ({navigation}) => {
-  const { token } = useSelector(obj => obj.userInfo);
+  const {token} = useSelector(obj => obj.userInfo);
   const [page, setPage] = useState(0);
   const [selected, setSelected] = useState(0);
   const [answers, setAnswers] = useState([]);
@@ -43,13 +41,18 @@ const RiskAssessment = ({navigation}) => {
       const {
         data: {status, payload},
         data,
-      } = axios.post(`${API_URL}/user/onboard/initialize`, {
-        answers, qids
-      }, {
-        headers: {
-          Authorization: token
-        }
-      });
+      } = axios.post(
+        `${API_URL}/user/onboard/initialize`,
+        {
+          answers,
+          qids,
+        },
+        {
+          headers: {
+            Authorization: token,
+          },
+        },
+      );
 
       console.log(payload);
 
@@ -60,24 +63,22 @@ const RiskAssessment = ({navigation}) => {
     }
   };
 
-  useEffect(() => {
-    const getOnboardingQuestions = async () => {
-      const {
-        data: {status, payload},
-        data,
-      } = await axios.get(`${API_URL}/user/onboard/questions`, {
-        headers: {
-          Authorization: token
-        }
-      });
-      setButtons(payload);
-      setQids(payload.map(i => i.qid));
-    }
-    getOnboardingQuestions();
-  }, [token]);
+  useEffect(async () => {
+    const {
+      data: {status, payload},
+      data,
+    } = await axios.get(`${API_URL}/user/onboard/questions`, {
+      headers: {
+        Authorization: token,
+      },
+    });
 
-  return (
-    buttons.length ? <ScreenContainer centerX logo>
+    setButtons(payload);
+    setQids(payload.map(i => i.qid));
+  }, []);
+
+  return buttons.length ? (
+    <ScreenContainer centerX logo>
       <Text h4 style={[styles.text, styles.title]}>
         {buttons[page].q}
       </Text>
@@ -103,8 +104,8 @@ const RiskAssessment = ({navigation}) => {
           />
         </View>
       </View>
-    </ScreenContainer> : null
-  );
+    </ScreenContainer>
+  ) : null;
 };
 
 export default RiskAssessment;

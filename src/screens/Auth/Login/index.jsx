@@ -121,7 +121,7 @@ const Login = ({navigation}) => {
           title="REGISTER"
           type="clear"
           //   ! CHANGE TO REGISTER WHEN FINISHED DEBUGGING
-          onPress={() => navigation.replace('Register')}
+          onPress={() => navigation.replace('SuggestedBaskets')}
         />
       </View>
     </ScreenContainer>

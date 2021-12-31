@@ -45,7 +45,6 @@ const SuggestedBaskets = ({navigation}) => {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    // const recommendedBaskets = [2, 4];
     //   TODO:AJ Handle getting portfolios from backend
     // GET SUGGESTED PORTFOLIOS
     const loadDashboardContent = async () => {
@@ -54,8 +53,8 @@ const SuggestedBaskets = ({navigation}) => {
         data,
       } = await axios.get(`${API_URL}/user/dashboard`, {
         headers: {
-          Authorization: token
-        }
+          Authorization: token,
+        },
       });
       if (status === 200) {
         dispatch(updateUserData(payload));
@@ -70,27 +69,8 @@ const SuggestedBaskets = ({navigation}) => {
 
         setRecommended(finalBaskets);
       }
-    }
+    };
     loadDashboardContent();
-
-
-    // const {
-    //   data: {status, payload},
-    //   data,
-    // } = axios.get(`${API_URL}/user/dashboard`, {
-    //   Authorization: token,
-    // });
-    // if (status === 200) {
-    //   dispatch(updateUserData(payload));
-    //   setUserData(payload);
-
-    //   const finalBaskets = getRecommendedBaskets(
-    //     payload.baskets,
-    //     payload.recommended,
-    //   );
-
-    //   setRecommended(finalBaskets);
-    // }
 
     // ! uncomment above / comment below when connecting to backend!!!!!!!!
     // const recommendedBaskets = [2, 4];
@@ -99,7 +79,6 @@ const SuggestedBaskets = ({navigation}) => {
     //   recommendedBaskets,
     // );
     // setRecommended(finalBaskets);
-
   }, []);
 
   return (
@@ -111,7 +90,6 @@ const SuggestedBaskets = ({navigation}) => {
         {recommended.map((basket, index) => (
           <Basket key={index} mreturn={-1.2} yreturn={+3.6} data={basket} />
         ))}
-
       </ScrollView>
 
       <View style={styles.button}>

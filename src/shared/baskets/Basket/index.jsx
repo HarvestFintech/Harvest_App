@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, Image, Modal, Text as RNText} from 'react-native';
+import React, {useState} from 'react';
+import {useSelector} from 'react-redux';
+import {StyleSheet, View, Image} from 'react-native';
 
 import {Chip, Tooltip, Divider, Icon} from 'react-native-elements';
 
-import {VictoryChart, VictoryTheme, VictoryPie} from 'victory';
-import {PieChart} from 'react-native-svg-charts';
+import {Text, Caret} from '@shared';
 
-import {Text, Caret, ScreenContainer} from '@shared';
+import BasketDetails from '../BasketInfo';
 
 import img from './recommended.png';
 
@@ -20,53 +20,39 @@ import img from './recommended.png';
 // })
 
 const Basket = ({mreturn, yreturn, coinIcons, harvestIcons, data}) => {
+  const {userData} = useSelector(obj => obj.userInfo);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const {uid, basket_name, coins, partition} = data;
-
 
   return (
     <View style={styles.box}>
       {isModalOpen && (
-        <Modal>
-          <ScreenContainer centerX>
-            <Text h1>{basket_name}</Text>
-            {/* <VictoryChart theme={VictoryTheme.material}></VictoryChart> */}
-
-            <Text>
-              {
-                //   contents hardcoded, change in future sprints!
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a feugiat augue, nec lobortis diam. Donec at metus ut ante posuere aliquet. Nam ac maximus sapien. Integer convallis sapien at enim venenatis, a tempus nibh aliquet. In lacinia massa vitae sem consequat, vel ullamcorper leo egestas. Phasellus pellentesque nisi sapien, vitae tempus dui mattis sit amet. Aenean at mattis magna. Mauris sed mollis ex, quis tincidunt nisl. In vel ipsum in augue condimentum blandit et in libero.'
-              }
-            </Text>
-            <Chip
-              onPress={() => setIsModalOpen(false)}
-              title="Go Back"
-              buttonStyle={styles.chip}
-            />
-          </ScreenContainer>
-        </Modal>
+        <BasketDetails data={data} onPress={() => setIsModalOpen(false)} />
       )}
       <View style={[styles.row, styles.spaceOut]}>
         <Text style={styles.title}>{basket_name}</Text>
         <View style={styles.row}>
+          {/* {userData.recommended.includes(data.uid) && (
+            <Tooltip
+              containerStyle={{width: 145, height: 130}}
+              popover={
+                <Text>
+                  when you see this icon, its a recommended portfolio tailored
+                  for you!
+                </Text>
+              }
+              overlayColor="rgba(20, 0, 54, 0.9)">
+              <Image source={img} />
+            </Tooltip>
+          )} */}
 
-          <Tooltip
-            containerStyle={{width: 145, height: 130}}
-            popover={
-              <Text>
-              when you see this icon, its a recommended portfolio tailored for you!
-              </Text>
-            }
-            overlayColor="rgba(20, 0, 54, 0.9)">
-            <Image source={img} />
-          </Tooltip>{
-          /* {coinIcons &&
+          {/* {coinIcons &&
             coinIcons.length > 0 &&
             coinIcons.sort().map((post, index) => {
               //   <Image key={index} source={require('./hicon.png')} />
               return <Text key={index}>{post}</Text>;
             })}*/}
-
         </View>
         <Chip
           title="Invest"

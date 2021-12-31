@@ -102,6 +102,7 @@ const Login = ({navigation}) => {
                 titleStyle={styles.forgotPassTitle}
                 title="Forgot your password?"
                 type="clear"
+                onPress={() => navigation.navigate('ForgotPassword')}
               />
             </View>
 
@@ -140,9 +141,9 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   forgotPassTitle: {
-    fontWeight: '100',
+    color: 'white',
+    fontSize: 15,
   },
-
   register: {
     marginTop: 25,
     flexDirection: 'row',

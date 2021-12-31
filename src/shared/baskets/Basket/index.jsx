@@ -1,11 +1,11 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Image} from 'react-native';
 
-import {Chip, colors, Divider, Image, Icon} from 'react-native-elements';
+import {Chip, colors, Divider, Icon} from 'react-native-elements';
 
 import {Text, Caret} from '@shared';
 
-import hicon from './hicon.png';
+import hicon from './recommended.png';
 
 const ArrowUp = () => (
   <Icon
@@ -26,6 +26,8 @@ const ArrowDown = () => (
   />
 );
 
+import img from './recommended.png';
+
 const Basket = ({title, mreturn, yreturn, coinIcons, harvestIcons, id}) => {
   // harvestIcons: array of strings
 
@@ -36,10 +38,14 @@ const Basket = ({title, mreturn, yreturn, coinIcons, harvestIcons, id}) => {
         <View style={[styles.row]}>
           {harvestIcons &&
             harvestIcons.length > 0 &&
-            harvestIcons.sort().map(post => {
-              return (
-                <Image key={Math.random()} source={require('./hicon.png')} />
-              );
+            harvestIcons.sort().map((post, index) => {
+              return <Image key={index} source={{uri: post}} />;
+            })}
+          {coinIcons &&
+            coinIcons.length > 0 &&
+            coinIcons.sort().map((post, index) => {
+              //   <Image key={index} source={require('./hicon.png')} />
+              return <Text key={index}>{post}</Text>;
             })}
         </View>
         <Chip

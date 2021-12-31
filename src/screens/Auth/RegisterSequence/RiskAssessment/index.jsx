@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import {StyleSheet, View, Button} from 'react-native';
 import {ButtonGroup} from 'react-native-elements';
+import { useSelector } from 'react-redux';
 
 import axios from 'axios';
 
@@ -11,10 +12,14 @@ import riskAssessment from './qa';
 import {API_URL} from '@env';
 
 const RiskAssessment = ({navigation}) => {
+  const { token } = useSelector(obj => obj.userInfo);
   const [page, setPage] = useState(0);
   const [selected, setSelected] = useState(0);
   const [answers, setAnswers] = useState([]);
-  const buttons = riskAssessment;
+  // const buttons = riskAssessment;
+
+  const [buttons, setButtons] = useState([]);
+  const [qids, setQids] = useState([]);
 
   const handleNext = () => {
     setSelected(0);
@@ -38,19 +43,41 @@ const RiskAssessment = ({navigation}) => {
       const {
         data: {status, payload},
         data,
-      } = axios.post(`${API_URL}/auth/login`, {
-        answers,
+      } = axios.post(`${API_URL}/user/onboard/initialize`, {
+        answers, qids
+      }, {
+        headers: {
+          Authorization: token
+        }
       });
 
-      if (status === 200 && payload.token) {
+      console.log(payload);
+
+      if (status === 200) {
         //   Navigate to suggested baskets if register request was successful
         navigation.navigate('SuggestedBaskets');
       }
     }
   };
 
+  useEffect(() => {
+    const getOnboardingQuestions = async () => {
+      const {
+        data: {status, payload},
+        data,
+      } = await axios.get(`${API_URL}/user/onboard/questions`, {
+        headers: {
+          Authorization: token
+        }
+      });
+      setButtons(payload);
+      setQids(payload.map(i => i.qid));
+    }
+    getOnboardingQuestions();
+  }, [token]);
+
   return (
-    <ScreenContainer centerX logo>
+    buttons.length ? <ScreenContainer centerX logo>
       <Text h4 style={[styles.text, styles.title]}>
         {buttons[page].q}
       </Text>
@@ -76,7 +103,7 @@ const RiskAssessment = ({navigation}) => {
           />
         </View>
       </View>
-    </ScreenContainer>
+    </ScreenContainer> : null
   );
 };
 

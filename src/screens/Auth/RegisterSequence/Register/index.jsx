@@ -137,12 +137,14 @@ const Register = ({navigation}) => {
                   onChangeText={handleChange('fname')}
                   onBlur={handleBlur('email')}
                   errorMessage={errors.fname}
+                  autoCapitalize="none"
                 />
                 <Input
                   label="Last name"
                   value={values.lname}
                   onChangeText={handleChange('lname')}
                   errorMessage={touched.lname && errors.lname}
+                  autoCapitalize="none"
                 />
                 <Input
                   label="Email address"
@@ -150,6 +152,7 @@ const Register = ({navigation}) => {
                   onChangeText={handleChange('email')}
                   errorMessage={touched.email && errors.email}
                   keyboardType="email-address"
+                  autoCapitalize="none"
                 />
               </>
             )}
@@ -246,7 +249,7 @@ const styles = StyleSheet.create({
 
 export default Register;
 
-/* 
+/*
 get all input promps from server as an array
 render 3 promps max. per page
 

@@ -14,47 +14,14 @@ const exampleBaskets = [
   {
     uid: 1,
     basket_name: 'Basket 1',
-    price: 12,
-    mincrease: 0.12,
-    yincrease: -0.24,
     coins: ['btc', 'eth'],
     partition: [0.5, 0.5],
-    badges: ['./recommended.png'],
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a feugiat augue, nec lobortis diam. Donec at metus ut ante posuere aliquet. Nam ac maximus sapien. Integer convallis sapien at enim venenatis, a tempus nibh aliquet. In lacinia massa vitae sem consequat, vel ullamcorper leo egestas. Phasellus pellentesque nisi sapien, vitae tempus dui mattis sit amet. Aenean at mattis magna. Mauris sed mollis ex, quis tincidunt nisl. In vel ipsum in augue condimentum blandit et in libero.',
   },
   {
     uid: 2,
     basket_name: 'Basket 2',
-    price: 12,
-    mincrease: 0.12,
-    yincrease: -0.24,
     coins: ['btc', 'eth'],
     partition: [0.5, 0.6],
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a feugiat augue, nec lobortis diam. Donec at metus ut ante posuere aliquet. Nam ac maximus sapien. Integer convallis sapien at enim venenatis, a tempus nibh aliquet. In lacinia massa vitae sem consequat, vel ullamcorper leo egestas. Phasellus pellentesque nisi sapien, vitae tempus dui mattis sit amet. Aenean at mattis magna. Mauris sed mollis ex, quis tincidunt nisl. In vel ipsum in augue condimentum blandit et in libero.',
-  },
-  {
-    uid: 3,
-    basket_name: 'Basket 3',
-    price: 12,
-    mincrease: 0.12,
-    yincrease: -0.24,
-    coins: ['btc', 'eth'],
-    partition: [0.5, 0.8],
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a feugiat augue, nec lobortis diam. Donec at metus ut ante posuere aliquet. Nam ac maximus sapien. Integer convallis sapien at enim venenatis, a tempus nibh aliquet. In lacinia massa vitae sem consequat, vel ullamcorper leo egestas. Phasellus pellentesque nisi sapien, vitae tempus dui mattis sit amet. Aenean at mattis magna. Mauris sed mollis ex, quis tincidunt nisl. In vel ipsum in augue condimentum blandit et in libero.',
-  },
-  {
-    uid: 4,
-    basket_name: 'Basket 4',
-    price: 12,
-    mincrease: 0.12,
-    yincrease: -0.24,
-    coins: ['btc', 'eth'],
-    partition: [0.5, 1],
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a feugiat augue, nec lobortis diam. Donec at metus ut ante posuere aliquet. Nam ac maximus sapien. Integer convallis sapien at enim venenatis, a tempus nibh aliquet. In lacinia massa vitae sem consequat, vel ullamcorper leo egestas. Phasellus pellentesque nisi sapien, vitae tempus dui mattis sit amet. Aenean at mattis magna. Mauris sed mollis ex, quis tincidunt nisl. In vel ipsum in augue condimentum blandit et in libero.',
   },
 ];
 
@@ -62,16 +29,22 @@ const getRecommendedBaskets = (baskets, reco) => {
   return baskets.filter(basket => reco.includes(basket.uid));
 };
 
+// BASKET OBJECT:
+
+// baskets.append({
+// 	"uid": b.basket_id,
+// 	"basket_name": b.basket_name,
+// 	"coins": [Coin.getCoinName(int(_coin)) for _coin in b.coins.split(",")],
+// 	"partition": b.partition
+// })
+
 const SuggestedBaskets = ({navigation}) => {
   const dispatch = useDispatch();
   const {token} = useSelector(obj => obj.userInfo);
   const [recommended, setRecommended] = useState([]);
-  const [userData, setUserData] = useState({
-    name: 'Nikolas',
-  });
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    const recommendedBaskets = [2, 4];
     //   TODO:AJ Handle getting portfolios from backend
     // GET SUGGESTED PORTFOLIOS
 
@@ -84,17 +57,17 @@ const SuggestedBaskets = ({navigation}) => {
     // if (status === 200) {
     //   dispatch(updateUserData(payload));
     //   setUserData(payload);
-    //   setRecommended(payload.recommended);
 
-    // const finalBaskets = getRecommendedBaskets(
-    //   payload.baskets,
-    //   payload.recommended,
-    // );
+    //   const finalBaskets = getRecommendedBaskets(
+    //     payload.baskets,
+    //     payload.recommended,
+    //   );
 
-    // setRecommended(finalBaskets);
+    //   setRecommended(finalBaskets);
     // }
 
     // ! uncomment above / comment below when connecting to backend!!!!!!!!
+    const recommendedBaskets = [2, 4];
     const finalBaskets = getRecommendedBaskets(
       exampleBaskets,
       recommendedBaskets,
@@ -109,14 +82,7 @@ const SuggestedBaskets = ({navigation}) => {
       </Text>
       <ScrollView>
         {recommended.map((basket, index) => (
-          <Basket
-            key={index}
-            mreturn={basket.mincrease}
-            yreturn={basket.yincrease}
-            coinIcons={basket.coins}
-            harvestIcons={basket.badges}
-            data={basket}
-          />
+          <Basket key={index} mreturn={-1.2} yreturn={+3.6} data={basket} />
         ))}
       </ScrollView>
 

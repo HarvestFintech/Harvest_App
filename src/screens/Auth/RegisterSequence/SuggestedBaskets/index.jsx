@@ -14,39 +14,14 @@ const exampleBaskets = [
   {
     uid: 1,
     basket_name: 'Basket 1',
-    price: 12,
-    mincrease: 0.12,
-    yincrease: -0.24,
     coins: ['btc', 'eth'],
     partition: [0.5, 0.5],
-    badges: ['./recommended.png'],
   },
   {
     uid: 2,
     basket_name: 'Basket 2',
-    price: 12,
-    mincrease: 0.12,
-    yincrease: -0.24,
     coins: ['btc', 'eth'],
     partition: [0.5, 0.6],
-  },
-  {
-    uid: 3,
-    basket_name: 'Basket 3',
-    price: 12,
-    mincrease: 0.12,
-    yincrease: -0.24,
-    coins: ['btc', 'eth'],
-    partition: [0.5, 0.8],
-  },
-  {
-    uid: 4,
-    basket_name: 'Basket 4',
-    price: 12,
-    mincrease: 0.12,
-    yincrease: -0.24,
-    coins: ['btc', 'eth'],
-    partition: [0.5, 1],
   },
 ];
 
@@ -54,13 +29,20 @@ const getRecommendedBaskets = (baskets, reco) => {
   return baskets.filter(basket => reco.includes(basket.uid));
 };
 
+// BASKET OBJECT:
+
+// baskets.append({
+// 	"uid": b.basket_id,
+// 	"basket_name": b.basket_name,
+// 	"coins": [Coin.getCoinName(int(_coin)) for _coin in b.coins.split(",")],
+// 	"partition": b.partition
+// })
+
 const SuggestedBaskets = ({navigation}) => {
   const dispatch = useDispatch();
   const {token} = useSelector(obj => obj.userInfo);
   const [recommended, setRecommended] = useState([]);
-  const [userData, setUserData] = useState({
-    name: 'Nikolas',
-  });
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
     // const recommendedBaskets = [2, 4];
@@ -91,12 +73,33 @@ const SuggestedBaskets = ({navigation}) => {
     }
     loadDashboardContent();
 
+
+    // const {
+    //   data: {status, payload},
+    //   data,
+    // } = axios.get(`${API_URL}/user/dashboard`, {
+    //   Authorization: token,
+    // });
+    // if (status === 200) {
+    //   dispatch(updateUserData(payload));
+    //   setUserData(payload);
+
+    //   const finalBaskets = getRecommendedBaskets(
+    //     payload.baskets,
+    //     payload.recommended,
+    //   );
+
+    //   setRecommended(finalBaskets);
+    // }
+
     // ! uncomment above / comment below when connecting to backend!!!!!!!!
-    // const finalBaskets = getRecommendedBaskets(
-    //   exampleBaskets,
-    //   recommendedBaskets,
-    // );
-    // setRecommended(finalBaskets);
+    const recommendedBaskets = [2, 4];
+    const finalBaskets = getRecommendedBaskets(
+      exampleBaskets,
+      recommendedBaskets,
+    );
+    setRecommended(finalBaskets);
+
   }, []);
 
   return (
@@ -105,17 +108,10 @@ const SuggestedBaskets = ({navigation}) => {
         {userData.name}, these portfolios are a perfect fit for you!
       </Text>
       <ScrollView>
-        {recommended.map((basket, index) => {
+        {recommended.map((basket, index) => (
+          <Basket key={index} mreturn={-1.2} yreturn={+3.6} data={basket} />
+        ))}
 
-          return (<Basket
-            key={index}
-            mreturn={0.12}
-            yreturn={-0.24}
-            coinIcons={basket.coins}
-            harvestIcons={[1, 2]}
-            data={basket}
-          />
-        )} )}
       </ScrollView>
 
       <View style={styles.button}>

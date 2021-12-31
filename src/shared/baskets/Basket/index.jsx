@@ -3,101 +3,47 @@ import {StyleSheet, View, Image, Modal, Text as RNText} from 'react-native';
 
 import {Chip, Tooltip, Divider, Icon} from 'react-native-elements';
 
-// dependencies deprecated, remove this dep and rncommunity/art
+import {VictoryChart, VictoryTheme, VictoryPie} from 'victory';
+import {PieChart} from 'react-native-svg-charts';
 
-import {Text, Caret} from '@shared';
-
-import {PieChart} from 'react-native-chart-kit';
-
-import hicon from './recommended.png';
-
-const ArrowUp = () => (
-  <Icon
-    iconStyle={styles.icon}
-    color="green"
-    name="caret-up"
-    type="ionicon"
-    size={15}
-  />
-);
-const ArrowDown = () => (
-  <Icon
-    iconStyle={styles.icon}
-    color="red"
-    name="caret-down"
-    type="ionicon"
-    size={15}
-  />
-);
+import {Text, Caret, ScreenContainer} from '@shared';
 
 import img from './recommended.png';
 
+// BASKET OBJECT:
+
+// baskets.append({
+// 	"uid": b.basket_id,
+// 	"basket_name": b.basket_name,
+// 	"coins": [Coin.getCoinName(int(_coin)) for _coin in b.coins.split(",")],
+// 	"partition": b.partition
+// })
+
 const Basket = ({mreturn, yreturn, coinIcons, harvestIcons, data}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const sliceColor = ['#F44336', '#2196F3', '#FFEB3B', '#4CAF50', '#FF9800'];
   const {uid, basket_name, coins, partition} = data;
 
-  // const dataset = [
-  //   {
-  //     name: 'Seoul',
-  //     population: 21500000,
-  //     color: 'rgba(131, 167, 234, 1)',
-  //     legendFontColor: '#7F7F7F',
-  //     legendFontSize: 15,
-  //   },
-  //   {
-  //     name: 'Toronto',
-  //     population: 2800000,
-  //     color: '#F00',
-  //     legendFontColor: '#7F7F7F',
-  //     legendFontSize: 15,
-  //   },
-  //   {
-  //     name: 'Beijing',
-  //     population: 527612,
-  //     color: 'red',
-  //     legendFontColor: '#7F7F7F',
-  //     legendFontSize: 15,
-  //   },
-  //   {
-  //     name: 'New York',
-  //     population: 8538000,
-  //     color: '#ffffff',
-  //     legendFontColor: '#7F7F7F',
-  //     legendFontSize: 15,
-  //   },
-  //   {
-  //     name: 'Moscow',
-  //     population: 11920000,
-  //     color: 'rgb(0, 0, 255)',
-  //     legendFontColor: '#7F7F7F',
-  //     legendFontSize: 15,
-  //   },
-  // ];
-  //
-  // const chartConfig = {
-  //   backgroundGradientFromOpacity: 0,
-  //   backgroundGradientToOpacity: 0.5,
-  //   // color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-  //   strokeWidth: 10, // optional, default 3
-  //   barPercentage: 0.5,
-  // };
 
-  return (<View style={styles.box}>
+  return (
+    <View style={styles.box}>
       {isModalOpen && (
         <Modal>
-          <RNText>partition: [{data.partition.join(', ')}]</RNText>
-          <PieChart
-            data={[10, 10, 10]}
-            height={150}
-            width={300}
-            chartConfig={chartConfig}
-          />
-          <Chip
-            onPress={() => setIsModalOpen(false)}
-            title="Go Back"
-            buttonStyle={styles.chip}
-          />
+          <ScreenContainer centerX>
+            <Text h1>{basket_name}</Text>
+            {/* <VictoryChart theme={VictoryTheme.material}></VictoryChart> */}
+
+            <Text>
+              {
+                //   contents hardcoded, change in future sprints!
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a feugiat augue, nec lobortis diam. Donec at metus ut ante posuere aliquet. Nam ac maximus sapien. Integer convallis sapien at enim venenatis, a tempus nibh aliquet. In lacinia massa vitae sem consequat, vel ullamcorper leo egestas. Phasellus pellentesque nisi sapien, vitae tempus dui mattis sit amet. Aenean at mattis magna. Mauris sed mollis ex, quis tincidunt nisl. In vel ipsum in augue condimentum blandit et in libero.'
+              }
+            </Text>
+            <Chip
+              onPress={() => setIsModalOpen(false)}
+              title="Go Back"
+              buttonStyle={styles.chip}
+            />
+          </ScreenContainer>
         </Modal>
       )}
       <View style={[styles.row, styles.spaceOut]}>
@@ -114,12 +60,13 @@ const Basket = ({mreturn, yreturn, coinIcons, harvestIcons, data}) => {
             overlayColor="rgba(20, 0, 54, 0.9)">
             <Image source={img} />
           </Tooltip>
-          {coinIcons &&
+          {/* {coinIcons &&
             coinIcons.length > 0 &&
             coinIcons.sort().map((post, index) => {
               //   <Image key={index} source={require('./hicon.png')} />
               return <Text key={index}>{post}</Text>;
             })}*/}
+
         </View>
         <Chip
           title="Invest"

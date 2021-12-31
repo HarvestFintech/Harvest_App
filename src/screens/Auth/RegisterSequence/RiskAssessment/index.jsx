@@ -29,7 +29,7 @@ const RiskAssessment = ({navigation}) => {
     setPage(page - 1);
   };
 
-  const handleFinish = () => {
+  const handleFinish = async () => {
     //   TODO:AJ create call to backend and add answers to DB
 
     answers[page] = selected;
@@ -39,9 +39,9 @@ const RiskAssessment = ({navigation}) => {
       handleNext();
     } else {
       const {
-        data: {status, payload},
+        data: {status},
         data,
-      } = axios.post(
+      } = await axios.post(
         `${API_URL}/user/onboard/initialize`,
         {
           answers,
@@ -54,8 +54,6 @@ const RiskAssessment = ({navigation}) => {
         },
       );
 
-      console.log(payload);
-
       if (status === 200) {
         //   Navigate to suggested baskets if register request was successful
         navigation.navigate('SuggestedBaskets');
@@ -63,18 +61,21 @@ const RiskAssessment = ({navigation}) => {
     }
   };
 
-  useEffect(async () => {
-    const {
-      data: {status, payload},
-      data,
-    } = await axios.get(`${API_URL}/user/onboard/questions`, {
-      headers: {
-        Authorization: token,
-      },
-    });
+  useEffect(() => {
+    const getQuestions = async () => {
+      const {
+        data: {status, payload},
+        data,
+      } = await axios.get(`${API_URL}/user/onboard/questions`, {
+        headers: {
+          Authorization: token,
+        },
+      });
 
-    setButtons(payload);
-    setQids(payload.map(i => i.qid));
+      setButtons(payload);
+      setQids(payload.map(i => i.qid));
+    }
+    getQuestions();
   }, []);
 
   return buttons.length ? (

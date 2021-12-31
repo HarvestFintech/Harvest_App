@@ -23,6 +23,7 @@ const Basket = ({mreturn, yreturn, coinIcons, harvestIcons, data}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const {uid, basket_name, coins, partition} = data;
 
+
   return (
     <View style={styles.box}>
       {isModalOpen && (
@@ -47,19 +48,13 @@ const Basket = ({mreturn, yreturn, coinIcons, harvestIcons, data}) => {
       )}
       <View style={[styles.row, styles.spaceOut]}>
         <Text style={styles.title}>{basket_name}</Text>
-        <View style={[styles.row]}>
-          {/* {harvestIcons &&
-            harvestIcons.length > 0 &&
-            harvestIcons.sort().map((post, index) => {
-              return <Image key={index} source={{uri: post}} />;
-            })} */}
-          <Tooltip
+        <View style={styles.row}>
+
+          {/*<Tooltip
             containerStyle={{width: 145, height: 130}}
             popover={
               <Text>
-                {
-                  'when you see this icon, its a recommended portfolio tailored for you!'
-                }
+              when you see this icon, its a recommended portfolio tailored for you!
               </Text>
             }
             overlayColor="rgba(20, 0, 54, 0.9)">
@@ -70,7 +65,8 @@ const Basket = ({mreturn, yreturn, coinIcons, harvestIcons, data}) => {
             coinIcons.sort().map((post, index) => {
               //   <Image key={index} source={require('./hicon.png')} />
               return <Text key={index}>{post}</Text>;
-            })} */}
+            })}*/}
+
         </View>
         <Chip
           title="Invest"

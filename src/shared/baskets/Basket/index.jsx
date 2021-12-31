@@ -5,7 +5,7 @@ import {Chip, Tooltip, Divider, Icon} from 'react-native-elements';
 
 // dependencies deprecated, remove this dep and rncommunity/art
 
-import {Text, Caret} from '@shared';
+import {Text, Caret, ScreenContainer} from '@shared';
 
 import {PieChart} from 'react-native-chart-kit';
 
@@ -35,7 +35,7 @@ import img from './recommended.png';
 const Basket = ({mreturn, yreturn, coinIcons, harvestIcons, data}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const sliceColor = ['#F44336', '#2196F3', '#FFEB3B', '#4CAF50', '#FF9800'];
-  const {uid, basket_name, coins, partition} = data;
+  const {uid, basket_name, coins, partition, description} = data;
 
   const dataset = [
     {
@@ -87,18 +87,43 @@ const Basket = ({mreturn, yreturn, coinIcons, harvestIcons, data}) => {
     <View style={styles.box}>
       {isModalOpen && (
         <Modal>
-          <RNText>partition: [{data.partition.join(', ')}]</RNText>
-          <PieChart
-            data={[10, 10, 10]}
-            height={150}
-            width={300}
-            chartConfig={chartConfig}
-          />
-          <Chip
-            onPress={() => setIsModalOpen(false)}
-            title="Go Back"
-            buttonStyle={styles.chip}
-          />
+          <ScreenContainer centerX>
+            <Text h1>{basket_name}</Text>
+            <Text>partition: [{data.partition.join(', ')}]</Text>
+            <PieChart
+              data={{
+                labels: [
+                  'January',
+                  'February',
+                  'March',
+                  'April',
+                  'May',
+                  'June',
+                ],
+                datasets: [
+                  {
+                    data: [
+                      Math.random() * 100,
+                      Math.random() * 100,
+                      Math.random() * 100,
+                      Math.random() * 100,
+                      Math.random() * 100,
+                      Math.random() * 100,
+                    ],
+                  },
+                ],
+              }}
+              height={150}
+              width={300}
+              chartConfig={chartConfig}
+            />
+            <Text>{description}</Text>
+            <Chip
+              onPress={() => setIsModalOpen(false)}
+              title="Go Back"
+              buttonStyle={styles.chip}
+            />
+          </ScreenContainer>
         </Modal>
       )}
       <View style={[styles.row, styles.spaceOut]}>

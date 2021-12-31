@@ -20,6 +20,8 @@ const exampleBaskets = [
     coins: ['btc', 'eth'],
     partition: [0.5, 0.5],
     badges: ['./recommended.png'],
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a feugiat augue, nec lobortis diam. Donec at metus ut ante posuere aliquet. Nam ac maximus sapien. Integer convallis sapien at enim venenatis, a tempus nibh aliquet. In lacinia massa vitae sem consequat, vel ullamcorper leo egestas. Phasellus pellentesque nisi sapien, vitae tempus dui mattis sit amet. Aenean at mattis magna. Mauris sed mollis ex, quis tincidunt nisl. In vel ipsum in augue condimentum blandit et in libero.',
   },
   {
     uid: 2,
@@ -29,6 +31,8 @@ const exampleBaskets = [
     yincrease: -0.24,
     coins: ['btc', 'eth'],
     partition: [0.5, 0.6],
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a feugiat augue, nec lobortis diam. Donec at metus ut ante posuere aliquet. Nam ac maximus sapien. Integer convallis sapien at enim venenatis, a tempus nibh aliquet. In lacinia massa vitae sem consequat, vel ullamcorper leo egestas. Phasellus pellentesque nisi sapien, vitae tempus dui mattis sit amet. Aenean at mattis magna. Mauris sed mollis ex, quis tincidunt nisl. In vel ipsum in augue condimentum blandit et in libero.',
   },
   {
     uid: 3,
@@ -38,6 +42,8 @@ const exampleBaskets = [
     yincrease: -0.24,
     coins: ['btc', 'eth'],
     partition: [0.5, 0.8],
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a feugiat augue, nec lobortis diam. Donec at metus ut ante posuere aliquet. Nam ac maximus sapien. Integer convallis sapien at enim venenatis, a tempus nibh aliquet. In lacinia massa vitae sem consequat, vel ullamcorper leo egestas. Phasellus pellentesque nisi sapien, vitae tempus dui mattis sit amet. Aenean at mattis magna. Mauris sed mollis ex, quis tincidunt nisl. In vel ipsum in augue condimentum blandit et in libero.',
   },
   {
     uid: 4,
@@ -47,6 +53,8 @@ const exampleBaskets = [
     yincrease: -0.24,
     coins: ['btc', 'eth'],
     partition: [0.5, 1],
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a feugiat augue, nec lobortis diam. Donec at metus ut ante posuere aliquet. Nam ac maximus sapien. Integer convallis sapien at enim venenatis, a tempus nibh aliquet. In lacinia massa vitae sem consequat, vel ullamcorper leo egestas. Phasellus pellentesque nisi sapien, vitae tempus dui mattis sit amet. Aenean at mattis magna. Mauris sed mollis ex, quis tincidunt nisl. In vel ipsum in augue condimentum blandit et in libero.',
   },
 ];
 

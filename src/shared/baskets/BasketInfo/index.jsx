@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {StyleSheet, Modal} from 'react-native';
 import {Chip} from 'react-native-elements';
 
+// charting docs: https://formidable.com/open-source/victory/docs/native/
 import {
   VictoryChart,
   VictoryTheme,

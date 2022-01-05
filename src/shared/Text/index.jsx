@@ -7,6 +7,7 @@ const Text = ({children, style, dark, ...props}) => {
   return (
     <RNText
       style={[styles.text, dark ? styles.colorDark : styles.colorLight, style]}
+      h1Style={styles.h1}
       {...props}>
       {children}
     </RNText>
@@ -19,7 +20,12 @@ const styles = StyleSheet.create({
   text: {},
   colorLight: {
     color: 'white',
+    fontFamily: 'Montserrat-Regular',
   },
+  h1: {
+    fontFamily: 'Montserrat-Bold',
+  },
+
   colorDark: {
     color: '#140036',
   },
